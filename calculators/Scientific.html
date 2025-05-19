@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,11 +27,11 @@
       margin-bottom: 1rem;
       text-align: center;
       font-weight: 600;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
 
     .sci-container {
-      max-width: 400px;
+      max-width: 380px;
       width: 100%;
       margin: 0 auto;
       background: white;
@@ -46,7 +47,7 @@
     }
 
     .display {
-      width: 100%;
+      width: 95%;
       height: 50px;
       font-size: 1.5rem;
       text-align: right;
@@ -58,31 +59,38 @@
 
     .buttons {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      column-gap: 18%;
     }
 
     .buttons button {
-      padding: 0.8rem;
-      font-size: 1rem;
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      font-size: 1.1rem;
       border: none;
-      border-radius: 8px;
+      border-radius: 50%;
       background-color: #f0f0f0;
       cursor: pointer;
       transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
+
     .buttons button:hover {
-      background-color: #d0e0ff;
+      background-color: #daa23a;
     }
 
     .operator {
-      background-color: #4e8cff;
+      background-color: #daa23a;
       color: white;
     }
 
     .operator:hover {
-      background-color: #3c76e4;
+      background-color: #daa23a;
     }
 
     .back-link {
@@ -117,44 +125,58 @@
     }
   </style>
 </head>
+
 <body>
   <h2>Scientific Calculator</h2>
   <div class="sci-container">
     <input type="text" class="display" id="display" disabled />
     <div class="buttons">
-      <button onclick="append('sin(')">sin</button>
-      <button onclick="append('cos(')">cos</button>
-      <button onclick="append('tan(')">tan</button>
-      <button onclick="append('Math.log10(')">log</button>
-      <button onclick="append('Math.log(')">ln</button>
+      <div class="buttons">
+        <!-- Row 1 -->
+        <button onclick="append('sin(')">sin</button>
+        <button onclick="append('cos(')">cos</button>
+        <button onclick="append('tan(')">tan</button>
+        <button onclick="append('Math.log10(')">log</button>
+      
+        <!-- Row 2 -->
+        <button onclick="append('Math.log(')">ln</button>
+        <button onclick="append('Math.pow(')">x<sup>y</sup></button>
+        <button onclick="append('Math.sqrt(')">√</button>
+        <button onclick="clearDisplay()" style="color: #fa0707;">C</button>
 
-      <button onclick="append('Math.pow(')">x<sup>y</sup></button>
-      <button onclick="append('Math.sqrt(')">√</button>
-      <button onclick="append('(')">(</button>
-      <button onclick="append(')')">)</button>
-      <button onclick="clearDisplay()" style="color: red;">C</button>
+      
+        <!-- Row 3 -->
+        <button onclick="append('(')">(</button>
+        <button onclick="append(')')">)</button>
+        <button onclick="append('Math.PI')">π</button>
+        <button onclick="append('%')">%</button>
 
-      <button onclick="append('7')">7</button>
-      <button onclick="append('8')">8</button>
-      <button onclick="append('9')">9</button>
-      <button onclick="append('/')">÷</button>
-      <button onclick="append('%')">%</button>
-
-      <button onclick="append('4')">4</button>
-      <button onclick="append('5')">5</button>
-      <button onclick="append('6')">6</button>
-      <button onclick="append('*')">×</button>
-      <button onclick="append('.')">.</button>
-
-      <button onclick="append('1')">1</button>
-      <button onclick="append('2')">2</button>
-      <button onclick="append('3')">3</button>
-      <button onclick="append('-')">−</button>
-      <button onclick="append('Math.PI')">π</button>
-
-      <button onclick="append('0')">0</button>
-      <button onclick="append('+')">+</button>
-      <button onclick="calculate()" style="grid-column: span 3; background-color: #4e8cff; color: white;">=</button>
+      
+        <!-- Row 4 -->
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')">÷</button>
+      
+        <!-- Row 5 -->
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')">×</button>
+      
+        <!-- Row 6 -->
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')">−</button>
+      
+        <!-- Row 7 -->
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="append('+')">+</button>
+        <button onclick="calculate()">=</button>
+      </div>
+      
     </div>
   </div>
   <a href="../index.html" class="back-link">← Back to CalcVerse</a>
@@ -183,4 +205,5 @@
     }
   </script>
 </body>
+
 </html>
