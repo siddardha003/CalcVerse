@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unit Converter - CalcVerse</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f0f4f8;
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      color: #3a3a3a;
+    }
+    label, select, input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1rem;
+      padding: 8px;
+    }
+    button {
+      background: #A4C8E1;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: #7aaed6;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #2a2a2a;
+    }
+  </style>
+</head>
+<body>
+  <h2>Unit Converter</h2>
+
+  <label for="category">Select category:</label>
+  <select id="category" onchange="updateUnits()">
+    <option value="length">Length</option>
+    <option value="weight">Weight</option>
+    <option value="temperature">Temperature</option>
+    <option value="time">Time</option>
+  </select>
+
+  <label for="inputValue">Enter value:</label>
+  <input type="number" id="inputValue" placeholder="Enter number" />
+
+  <label for="inputUnit">From unit:</label>
+  <select id="inputUnit"></select>
+
+  <label for="outputUnit">To unit:</label>
+  <select id="outputUnit"></select>
+
+  <button onclick="convert()">Convert</button>
+
+  <div id="result"></div>
+
+  <script>
+    const units = {
+      length: {
+        meter: 1,
+        kilometer: 1000,
+        mile: 1609.34,
+        foot: 0.3048,
+      },
+      weight: {
+        gram: 1,
+        kilogram: 1000,
+        pound: 453.592,
+        ounce: 28.3495,
+      },
+      time: {
+        second: 1,
+        minute: 60,
+        hour: 3600,
+        day: 86400,
+      },
+      temperature: {
+        celsius: 'c',
+        fahrenheit: 'f',
+        kelvin: 'k',
+      },
+    };
+
+    function updateUnits() {
+      const category = document.getElementById('category').value;
+      const inputUnit = document.getElementById('inputUnit');
+      const outputUnit = document.getElementById('outputUnit');
+
+      inputUnit.innerHTML = '';
+      outputUnit.innerHTML = '';
+
+      const currentUnits = units[category];
+      for (let unit in currentUnits) {
+        inputUnit.innerHTML += `<option value="${unit}">${capitalize(unit)}</option>`;
+        outputUnit.innerHTML += `<option value="${unit}">${capitalize(unit)}</option>`;
+      }
+    }
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function convert() {
+      const category = document.getElementById('category').value;
+      const value = parseFloat(document.getElementById('inputValue').value);
+      const from = document.getElementById('inputUnit').value;
+      const to = document.getElementById('outputUnit').value;
+
+      if (isNaN(value)) {
+        document.getElementById('result').textContent = 'Please enter a valid number.';
+        return;
+      }
+
+      let result = 0;
+
+      if (category === 'temperature') {
+        result = convertTemperature(value, from, to);
+      } else {
+        const baseValue = value * units[category][from]; // Convert to base (like meter/gram/second)
+        result = baseValue / units[category][to];         // Convert to target
+      }
+
+      document.getElementById('result').textContent =
+        `${value} ${capitalize(from)} = ${result.toFixed(4)} ${capitalize(to)}`;
+    }
+
+    function convertTemperature(value, from, to) {
+      let tempInCelsius;
+
+      // Convert to Celsius first
+      switch (from) {
+        case 'celsius': tempInCelsius = value; break;
+        case 'fahrenheit': tempInCelsius = (value - 32) * 5/9; break;
+        case 'kelvin': tempInCelsius = value - 273.15; break;
+      }
+
+      // Convert from Celsius to target
+      switch (to) {
+        case 'celsius': return tempInCelsius;
+        case 'fahrenheit': return (tempInCelsius * 9/5) + 32;
+        case 'kelvin': return tempInCelsius + 273.15;
+      }
+    }
+
+    // Initialize unit options on page load
+    updateUnits();
+  </script>
+</body>
+</html>

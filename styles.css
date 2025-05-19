@@ -1,0 +1,101 @@
+/* style.css */
+:root {
+    --primary: #f8ae1c;
+    --secondary: #e69500;
+    --accent: #4361ee;
+    --light: #f8f9fa;
+    --dark: #212529;
+  }
+  
+  body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff9f0 0%, #f5eddf 100%);
+      text-align: center;
+      min-height: 100vh;
+      color: var(--dark);
+    }
+    
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+  
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--secondary);
+      margin: 1rem 0 2rem;
+      font-weight: 600;
+    }
+    
+    img.logo {
+      width: 80px;
+      height: 80px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    }
+    
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(248, 174, 28, 0.15);
+      width: 180px;
+      text-decoration: none;
+      color: var(--dark);
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(248, 174, 28, 0.1);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(248, 174, 28, 0.2);
+      background-color: white;
+    }
+  
+    .card h3 {
+      margin: 1rem 0 0;
+      color: var(--secondary);
+      font-size: 1.1rem;
+    }
+  
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    footer {
+      margin-top: 3.8rem;
+      padding: 1.5rem;
+      font-size: 1rem;
+      color: white;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    }
